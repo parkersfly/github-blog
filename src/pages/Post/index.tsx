@@ -1,9 +1,14 @@
-import { PostContainer } from "./styles";
+import { PostContainer, PostContent } from "./styles";
+import { Header } from "../../components/Header";
+import { Details } from "./Details/indes";
 
 export function Post() {
   return(
     <PostContainer>
-      Hello world!
+      <Header />
+      <PostContent>
+        <Details />
+      </PostContent>
     </PostContainer>
   )
 }

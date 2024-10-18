@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   height: 29.6rem;
 
-  padding-top: 5.7rem;
+  padding-top: 6.4rem;
 
   background-image: url(${cover});
   background-repeat: no-repeat;

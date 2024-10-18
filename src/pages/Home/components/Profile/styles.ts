@@ -47,9 +47,12 @@ export const ProfileContent = styled.div`
         display: flex;
         align-items: center;
         gap: .8rem;
+
+        border-bottom: 1px solid transparent;
         
         &:hover {
           border-bottom: 1px solid ${({ theme }) => theme.blue};
+          transition: border 0.2s;
         }
       }
     }
