@@ -25,8 +25,6 @@ export function Profile(){
     followers: 0,
     html_url: "",
   })
-
-  console.log(profile)
   
   useEffect(() => {
     async function fetchUserData(){

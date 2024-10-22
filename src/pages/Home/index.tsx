@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Header } from "../../components/Header";
 import { useIssue } from "../../contexts/IssuesContext";
 import { PostCard } from "./components/PostCard";
@@ -8,7 +9,9 @@ import { HomeContainer } from "./styles";
 export function Home(){
   const { issues } = useIssue()
 
-  console.log(issues)
+  useEffect(() => {
+    console.log(issues)
+  }, [issues])
 
   return(
     <HomeContainer>
@@ -17,18 +20,15 @@ export function Home(){
       <SearchForm />
 
       <main>
-        {
-          issues.map((issue) => {
-            const { id, title, created_at, body: description } = issue
+        { issues.length > 0 &&
+          (issues.map((issue) => {
             return (
               <PostCard 
-                key={id} 
-                title={title} 
-                created_at={created_at} 
-                description={description} 
+                key={issue.id} 
+                data={issue} 
               />
             )
-          })
+          }))
         }
       </main>
     </HomeContainer>

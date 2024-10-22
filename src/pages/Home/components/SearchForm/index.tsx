@@ -1,8 +1,8 @@
 import { SearchFormContainer, SearchFormContent } from "./styles"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { api } from "../../../../lib/axios"
 import { useForm } from "react-hook-form"
 import * as z from 'zod'
+import { useIssue } from "../../../../contexts/IssuesContext"
 
 const searchFormSchema = z.object({
   query: z.string()
@@ -11,8 +11,10 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 export function SearchForm(){
+
+  const { issues, fetchIssues } = useIssue()
   
-  // const publicationsNumber = issues.total_count
+  const countPublishedIssues = issues.length
 
   const {
     register,
@@ -22,10 +24,8 @@ export function SearchForm(){
   })
 
 
-  async function handleSearchIssues(search: SearchFormInputs){
-    const response = await api.get(`search/issues?q=${search.query}%20repo:parkersfly/github-blog`)
-
-    console.log(response.data)
+  async function handleSearchIssues(data: SearchFormInputs){
+    await fetchIssues(data.query)
   }
 
   return(
@@ -33,7 +33,11 @@ export function SearchForm(){
       <SearchFormContent>
         <div>
           <strong>Publicações</strong>
-          <span>0 publicações</span>
+
+          <span>
+            {countPublishedIssues}
+            {countPublishedIssues === 1 ? " publicação" : " publicações"}
+          </span>
         </div>
 
         <form onSubmit={handleSubmit(handleSearchIssues)}>

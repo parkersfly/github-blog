@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const PostCardContainer = styled.a`
+export const PostCardContainer = styled(Link)`
+  width: 100%;
+  max-width: 41.6rem;
   height: 26rem;
   background: ${({ theme }) => theme.post};
   border-radius: 1rem;
@@ -21,9 +24,9 @@ export const PostCardContainer = styled.a`
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+    gap: 1.6rem;
 
     h3 {
-      width: 28.3rem;
       font-size: 2rem;
       line-height: 160%;
       color: ${({ theme }) => theme.title};
@@ -36,10 +39,10 @@ export const PostCardContainer = styled.a`
   }
 
   > main {
-    overflow: hidden; /* Esconde o texto que sai da div */
-    display: -webkit-box; /* Necessário para o flexbox em navegadores antigos */
-    -webkit-box-orient: vertical; /* Define a orientação do box */
-    -webkit-line-clamp: 4; /* Número máximo de linhas */
+    overflow: hidden; 
+    display: -webkit-box;
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 4; 
     max-height: 11.6em; 
     line-height: 160%;
   }
